@@ -11,7 +11,8 @@ describe('GET /orders', function () {
   beforeEach(function () { sinon.restore(); });
 
   it('should return all orders', async function () {
-    const orders = await OrderModel.findAll();
+    const orders = OrderModel.bulkBuild(orderMocks.findAllResponse, { raw: true });
+    sinon.stub(OrderModel, 'findAll').resolves(orders);
 
     const response = await chai.request(app).get('/orders');
 

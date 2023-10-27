@@ -24,6 +24,12 @@ const findAllResponse = [
   }
 ];
 
+const bulk = findAllResponse.map(({id, userId}) => ({
+  id,
+  userId,
+}));
+
 export default {
   findAllResponse,
+  bulk,
 };
