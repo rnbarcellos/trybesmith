@@ -1,5 +1,6 @@
 import joi from 'joi';
 import { Login } from '../types/Login';
+import { Validation } from '../types/Validation';
 
 const loginSchema = joi.object({
   username: joi.string().required(),
@@ -7,17 +8,6 @@ const loginSchema = joi.object({
 }).messages({
   'any.required': '"username" and "password" are required',
 });
-
-type Error = {
-  name: string;
-  message: string;
-  stack?: string;
-};
-
-type Validation = {
-  error: Error | undefined;
-  value: Login | undefined;
-};
 
 const validateLogin = (data: Login): Validation => loginSchema.validate(data);
 
